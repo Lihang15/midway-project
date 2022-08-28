@@ -1,6 +1,6 @@
 import { MidwayConfig } from '@midwayjs/core';
-import { Person } from '../entity/person';
-import { Role } from '../entity/role';
+import { Person } from '../entity/person.entity';
+import { Role } from '../entity/role.entity';
 
 
 export default {

@@ -15,25 +15,25 @@ export class ReportInfo implements IMethodAspect {
     //包裹整个函数的执行
   async around(joinPoint: JoinPoint){
     if(joinPoint.target?.ctx){
-        // log.debug("Enter: {}() with argument[s] = {}", joinPoint.getSignature().getName(), Arrays.toString(joinPoint.getArgs()));
-        joinPoint.target.ctx.logger.info('----------------执行当前函数: %s()------------------',joinPoint.methodName);
+        joinPoint.target.ctx.logger.info('Enter: %s() Start Execution',joinPoint.methodName);
     }
     const result = joinPoint.proceed(...joinPoint.args)
     return result;
    }
 
+   // 函数抛出异常 后执行
   async afterThrow(joinPoint: JoinPoint, error: Error){
     if(joinPoint.target?.ctx){
-        joinPoint.target.ctx.logger.info('----------------当前函数执: %s() 执行失败-----------------',joinPoint.methodName);
+        joinPoint.target.ctx.logger.info('Current: %s() Execute failure',joinPoint.methodName);
     }
     if(error){
         throw error;
     }
   }
-
+  // 函数正确返回后执行
   async afterReturn(joinPoint: JoinPoint, result: any){
     if(joinPoint.target?.ctx){
-        joinPoint.target.ctx.logger.info('----------------当前函数: %s() 执行成功------------------',joinPoint.methodName);
+        joinPoint.target.ctx.logger.info('Current: %s() Execute successfully',joinPoint.methodName);
     }
     return result;
   }

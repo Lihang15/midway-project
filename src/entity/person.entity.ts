@@ -1,5 +1,5 @@
 import { Table, Model, Column, PrimaryKey, HasMany } from 'sequelize-typescript';
-import { Role } from './role';
+import { Role } from './role.entity';
 @Table({timestamps: false,
     freezeTableName: true,
     tableName: 'person', 
@@ -15,6 +15,12 @@ export class Person extends Model {
 
   @Column
   birthday: string;
+
+  @Column
+  createdAt: string;
+
+  @Column
+  updatedAt: Date;
 
   @HasMany(() => Role)
   roles: Role[];

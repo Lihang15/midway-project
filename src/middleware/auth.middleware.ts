@@ -3,8 +3,9 @@ import { Middleware } from '@midwayjs/decorator';
 import { NextFunction, Context } from '@midwayjs/koa';
 // import { MyError } from '../error/test.error';
 
+  // 这里可以拿到下一个中间件或者控制器的返回值（如果中间件没有返回值默认返回控制器的）
 @Middleware()
-export class TestMiddleware implements IMiddleware<Context, NextFunction> {
+export class AuthMiddleware implements IMiddleware<Context, NextFunction> {
   resolve() {
     return async (ctx: Context, next: NextFunction) => {
       // const user =undefined;

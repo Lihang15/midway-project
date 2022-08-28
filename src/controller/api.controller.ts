@@ -2,12 +2,12 @@ import { Inject, Controller, Get, Query, App, Config } from '@midwayjs/decorator
 import { Application, Context } from '@midwayjs/koa';
 import { UserService } from '../service/user.service';
 import { Validate } from '@midwayjs/validate';
-import { UserDTO } from '../dto/user/user.dto';
+import { UserDTO } from '@/dto/user/user.dto';
 // import { MidwayHttpError } from '@midwayjs/core';
 import { CustomError } from '../error/test.error';
-import { Person } from '../entity/person';
-import { Role } from '../entity/role';
-import { Response } from '../utils/res.utils';
+import { Person } from '../entity/person.entity';
+import { Role } from '@/entity/role.entity';
+import { Response } from '@/utils/res.utils';
 // import { HttpStatus, MidwayHttpError } from '@midwayjs/core';
 
 @Controller('/api')
@@ -43,7 +43,6 @@ export class APIController {
       raw: true,
     });
    
-   console.log(data)
     return Response.Success(data);
     this.ctx.logger.info('当前name:%s',this.userConfig);
     this.ctx.logger.info('当前环境:%s',this.app.getEnv());

@@ -1,5 +1,5 @@
 import { Table, Model, Column, PrimaryKey, ForeignKey } from 'sequelize-typescript';
-import { Person } from './person';
+import { Person } from './person.entity';
 
 @Table({timestamps: false, //false 忽略createdAt 和updateAt 查询列不会自动拼接
     freezeTableName: true,

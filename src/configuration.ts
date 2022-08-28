@@ -1,4 +1,5 @@
 import { Configuration, App } from '@midwayjs/decorator';
+import 'tsconfig-paths/register'
 import * as koa from '@midwayjs/koa';
 import * as validate from '@midwayjs/validate';
 import * as info from '@midwayjs/info';
@@ -6,8 +7,8 @@ import { join } from 'path';
 import * as view from '@midwayjs/view-nunjucks';
 import { DefaultErrorFilter } from './filter/default.filter';
 // import { NotFoundFilter } from './filter/notfound.filter';
-import { ReportMiddleware } from './middleware/report.middleware';
-import { TestMiddleware } from './middleware/test.middleware';
+import { ResMiddleware } from './middleware/res.middleware';
+import { AuthMiddleware } from './middleware/auth.middleware';
 import { InternalServerErrorFilter } from './filter/internal.filter';
 import * as sequelize from '@midwayjs/sequelize';
 // import { DefaultErrorFilter } from './filter/default.filter';
@@ -32,7 +33,7 @@ export class ContainerLifeCycle {
   async onReady() {
     // add middleware
     this.app.useFilter([InternalServerErrorFilter,DefaultErrorFilter])
-    this.app.useMiddleware([ReportMiddleware,TestMiddleware]);
+    this.app.useMiddleware([ResMiddleware,AuthMiddleware]);
     
     // add filter
     // this.app.useFilter([NotFoundFilter, DefaultErrorFilter]);
