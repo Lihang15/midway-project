@@ -20,5 +20,5 @@ export interface WeatherInfo {
     sm: string;
     isRadar: string;
     Radar: string;
-  }
+  };
 }

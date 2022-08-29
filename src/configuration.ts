@@ -9,7 +9,7 @@ import { DefaultErrorFilter } from './filter/default.filter';
 // import { NotFoundFilter } from './filter/notfound.filter';
 import { ResMiddleware } from './middleware/res.middleware';
 import { AuthMiddleware } from './middleware/auth.middleware';
-import { InternalServerErrorFilter } from './filter/internal.filter';
+import { BusinessServerErrorFilter } from './filter/business.filter';
 import * as sequelize from '@midwayjs/sequelize';
 // import { DefaultErrorFilter } from './filter/default.filter';
 
@@ -21,7 +21,7 @@ import * as sequelize from '@midwayjs/sequelize';
     sequelize,
     {
       component: info,
-      enabledEnvironment: ['local'],
+      enabledEnvironment: ['local', 'dev'],
     },
   ],
   importConfigs: [join(__dirname, './config')],
@@ -32,10 +32,9 @@ export class ContainerLifeCycle {
 
   async onReady() {
     // add middleware
-    this.app.useFilter([InternalServerErrorFilter, DefaultErrorFilter]);
     this.app.useMiddleware([ResMiddleware, AuthMiddleware]);
 
     // add filter
-    // this.app.useFilter([NotFoundFilter, DefaultErrorFilter]);
+    this.app.useFilter([BusinessServerErrorFilter, DefaultErrorFilter]);
   }
 }

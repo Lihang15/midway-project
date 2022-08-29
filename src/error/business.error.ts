@@ -1,5 +1,6 @@
 import { MidwayError } from '@midwayjs/core';
 
+// 自定义业务异常
 export class CustomError extends MidwayError {
   constructor() {
     super('my custom error', 'CUSTOM_ERROR_CODE_10000');

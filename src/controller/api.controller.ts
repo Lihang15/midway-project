@@ -11,7 +11,7 @@ import { UserService } from '../service/user.service';
 import { Validate } from '@midwayjs/validate';
 import { UserDTO } from '@/dto/user/user.dto';
 // import { MidwayHttpError } from '@midwayjs/core';
-import { CustomError } from '../error/test.error';
+import { CustomError } from '../error/business.error';
 import { Person } from '../entity/person.entity';
 import { Role } from '@/entity/role.entity';
 import { Response } from '@/utils/res.utils';
@@ -37,7 +37,7 @@ export class APIController {
     return { success: true, message: 'OK', data: user };
   }
 
-  @Get('/get_username')
+  @Get('/test')
   @Validate()
   async getUserName(@Query() name: UserDTO) {
     // raw = true 1对多的数据会一条一条展示
@@ -48,10 +48,11 @@ export class APIController {
       include: [Role],
       raw: true,
     });
-
-    return Response.Success(data);
     this.ctx.logger.info('当前name:%s', this.userConfig);
     this.ctx.logger.info('当前环境:%s', this.app.getEnv());
+
+    return Response.Success(data);
+
     return { success: true };
     // this.ctx.logger.debug('debug info');
     // this.ctx.logger.warn('WARNNING!!!!');

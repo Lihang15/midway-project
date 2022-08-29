@@ -24,8 +24,8 @@ export default {
         define: { charset: 'utf8' },
         timezone: '+08:00',
         entities: [Person, Role],
+        sync: true, // 本地的时候，可以通过sync: true直接createTable
       },
     },
-    sync: true, // 本地的时候，可以通过sync: true直接createTable
   },
 } as MidwayConfig;

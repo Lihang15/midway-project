@@ -9,8 +9,8 @@ export class DefaultErrorFilter {
   async catch(err: Error, ctx: Context) {
     // 后台直接打印 错误，不让前台看到异常错误 给个友好提示
     // 把Error类型直接传入 在控制台打印 并保存在common-error.log文件里
-    ctx.logger.error(err)
-    ctx.status=500;
+    ctx.logger.error(err);
+    ctx.status = 500;
     return {
       code: 500,
       message: '服务内部异常',

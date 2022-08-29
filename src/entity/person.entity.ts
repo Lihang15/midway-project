@@ -7,6 +7,7 @@ import {
 } from 'sequelize-typescript';
 import { Role } from './role.entity';
 @Table({
+  engine: 'innodb',
   timestamps: false,
   freezeTableName: true,
   tableName: 'person',
@@ -24,10 +25,13 @@ export class Person extends Model {
   birthday: string;
 
   @Column
-  createdAt: string;
+  createdAt: Date;
 
   @Column
   updatedAt: Date;
+
+  @Column
+  deletedAt: Date;
 
   @HasMany(() => Role)
   roles: Role[];

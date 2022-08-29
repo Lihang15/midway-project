@@ -5,6 +5,7 @@ import { HomeController } from '../controller/home.controller';
 import { WeatherController } from '../controller/weather.controller';
 // import { HomeController } from '../controller/home.controller';
 
+// AOP 动态切入log
 // 单例作用域 不能注入 request作用域的 ctx
 @Aspect([APIController, HomeController, WeatherController])
 export class ReportInfo implements IMethodAspect {
