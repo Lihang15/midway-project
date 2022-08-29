@@ -1,5 +1,5 @@
 import { Configuration, App } from '@midwayjs/decorator';
-import 'tsconfig-paths/register'
+import 'tsconfig-paths/register';
 import * as koa from '@midwayjs/koa';
 import * as validate from '@midwayjs/validate';
 import * as info from '@midwayjs/info';
@@ -32,9 +32,9 @@ export class ContainerLifeCycle {
 
   async onReady() {
     // add middleware
-    this.app.useFilter([InternalServerErrorFilter,DefaultErrorFilter])
-    this.app.useMiddleware([ResMiddleware,AuthMiddleware]);
-    
+    this.app.useFilter([InternalServerErrorFilter, DefaultErrorFilter]);
+    this.app.useMiddleware([ResMiddleware, AuthMiddleware]);
+
     // add filter
     // this.app.useFilter([NotFoundFilter, DefaultErrorFilter]);
   }

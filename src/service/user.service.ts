@@ -15,11 +15,10 @@ export class UserService {
   }
 
   async getUserName(name: string) {
-    return new Promise(resolve=>{
+    return new Promise(resolve => {
       setTimeout(() => {
-        resolve('hahhahaaaaa')
-      }, (3000));
-    })
-      
+        resolve('hahhahaaaaa');
+      }, 3000);
+    });
   }
 }

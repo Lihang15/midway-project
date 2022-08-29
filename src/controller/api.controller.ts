@@ -1,4 +1,11 @@
-import { Inject, Controller, Get, Query, App, Config } from '@midwayjs/decorator';
+import {
+  Inject,
+  Controller,
+  Get,
+  Query,
+  App,
+  Config,
+} from '@midwayjs/decorator';
 import { Application, Context } from '@midwayjs/koa';
 import { UserService } from '../service/user.service';
 import { Validate } from '@midwayjs/validate';
@@ -21,7 +28,6 @@ export class APIController {
   @Inject()
   userService: UserService;
 
-
   @Config('name')
   userConfig;
 
@@ -39,25 +45,23 @@ export class APIController {
 
     // 1对1 raw = true  raw=false 一样
     const data = await Person.findAll({
-      include:[Role],
+      include: [Role],
       raw: true,
     });
-   
+
     return Response.Success(data);
-    this.ctx.logger.info('当前name:%s',this.userConfig);
-    this.ctx.logger.info('当前环境:%s',this.app.getEnv());
-    return {success:true}
+    this.ctx.logger.info('当前name:%s', this.userConfig);
+    this.ctx.logger.info('当前环境:%s', this.app.getEnv());
+    return { success: true };
     // this.ctx.logger.debug('debug info');
     // this.ctx.logger.warn('WARNNING!!!!');
     // this.ctx.logger.error('Eoor');
-      // throw new MidwayHttpError('my custom error', 30000);
-      // throw new MyError();
-      throw new CustomError()
-      // this.ctx.logger.info('123');
-      // throw {name:123}
-      this.ctx.logger.info('123xaxaxaxax');
-      return 1
-  
-    
+    // throw new MidwayHttpError('my custom error', 30000);
+    // throw new MyError();
+    throw new CustomError();
+    // this.ctx.logger.info('123');
+    // throw {name:123}
+    this.ctx.logger.info('123xaxaxaxax');
+    return 1;
   }
 }

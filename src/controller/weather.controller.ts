@@ -5,7 +5,6 @@ import { Context } from '@midwayjs/koa';
 
 @Controller('/')
 export class WeatherController {
-
   @Inject()
   weatherService: WeatherService;
 
