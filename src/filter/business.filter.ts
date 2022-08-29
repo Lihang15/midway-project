@@ -9,6 +9,13 @@ import { NotFoundError } from '@midwayjs/core/dist/error/http';
 @Catch([AuthError, MyError, MidwayValidationError, NotFoundError])
 export class BusinessServerErrorFilter {
   async catch(err: MidwayError, ctx: Context) {
+    if (err.name === 'NotFoundError') {
+      ctx.status = 404;
+      return {
+        code: err.code,
+        message: err.message,
+      };
+    }
     ctx.status = 403;
     return {
       code: err.code,
