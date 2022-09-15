@@ -18,3 +18,15 @@ export class AuthError extends MidwayError {
     super('auth error', 'AUTH_ERROR_CODE_10001');
   }
 }
+
+export class UserError extends MidwayError {
+  constructor() {
+    super('wanglihang不允许登陆', '123456789');
+  }
+}
+
+export class NotCanDoError extends MidwayError {
+  constructor() {
+    super('这是我的一个业务异常 我不允许你进行操作', '123456789');
+  }
+}

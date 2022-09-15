@@ -11,7 +11,7 @@ import { UserService } from '../service/user.service';
 import { Validate } from '@midwayjs/validate';
 import { UserDTO } from '@/dto/user/user.dto';
 // import { MidwayHttpError } from '@midwayjs/core';
-import { CustomError } from '../error/business.error';
+import { CustomError, NotCanDoError, UserError } from '../error/business.error';
 import { Person } from '../entity/person.entity';
 import { Role } from '@/entity/role.entity';
 import { Response } from '@/utils/res.utils';
@@ -33,13 +33,32 @@ export class APIController {
 
   @Get('/get_user')
   async getUser(@Query('uid') uid) {
-    const user = await this.userService.getUser({ uid });
+    const user = this.userService.getUser({ uid });
+    console.log(user);
     return { success: true, message: 'OK', data: user };
+  }
+
+  @Get('/test_api')
+  async getTest() {
+    return '我是9999';
   }
 
   @Get('/test')
   @Validate()
-  async getUserName(@Query() name: UserDTO) {
+  async getUserName(@Query() obj: UserDTO) {
+    if (obj.name === 'wanglihang') {
+      throw new UserError();
+    }
+    if (obj.name === 'sunzhidong') {
+      throw new NotCanDoError();
+    }
+    const datas = await Person.findAll();
+    await datas[0].update({ name: 'li-haxaxang' });
+    console.log(datas);
+
+    // const testdata = await Person.findByPk(1);
+
+    // console.log(testdata.name);
     // raw = true 1对多的数据会一条一条展示
     // raw = false 多的一方会成数组展示
 
