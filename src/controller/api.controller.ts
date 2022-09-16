@@ -40,7 +40,7 @@ export class APIController {
 
   @Get('/test_api')
   async getTest() {
-    return '我是9999';
+    return '我是9999' + this.userConfig;
   }
 
   @Get('/test')
